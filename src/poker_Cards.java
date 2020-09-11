@@ -43,7 +43,7 @@ public class poker_Cards {
 		
 		//存花色以及數字的字串陣列
 		String[] kinds = {"黑桃", "方塊", "紅心", "黑梅"};
-		String[] nums = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
+		String[] nums = {"A ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 ", "8 ", "9 ", "10", "J ", "Q ", "K "};
 		
 		//先產生52張牌的組合
 		for(int i = 1; i <= 4; i++) {
@@ -54,9 +54,10 @@ public class poker_Cards {
 		
 		//54張時需額外加入2張鬼牌
 		if(cardsNum == 54) {
-			cards.add("黑鬼牌");
-			cards.add("紅鬼牌");
+			cards.add("黑鬼牌 ");
+			cards.add("紅鬼牌 ");
 		}
+		System.out.print("顯示洗牌結果...\n\n");
 		
 		//開始重排，使用do...while讓重排必定執行一次
 		do {
