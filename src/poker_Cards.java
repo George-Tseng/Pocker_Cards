@@ -18,18 +18,13 @@ public class poker_Cards {
         	System.out.print("請選擇是否要包含鬼牌？ 輸入 0 代表『否』、1 代表『是』(預設為『否』)\n");
             optText = numScanner.nextLine();
             
-            //處理預設
-            if(optText.equals("") == true) {
+            //處理預設或手動輸入0
+            if(optText.equals("") == true || optText.equals("0") == true) {
             	optText = "0";
             	cardsNum = 52;
             	break;
             }
             else {
-            	//處理手動輸入0
-            	if(optText.equals("0") == true) {
-            		cardsNum = 52;
-            		break;
-            	}
             	//處理手動輸入1
         		if(optText.equals("1") == true) {
         			cardsNum = 54;
@@ -63,7 +58,7 @@ public class poker_Cards {
 			cards.add("紅鬼牌");
 		}
 		
-		//開始重排
+		//開始重排，使用do...while讓重排必定執行一次
 		do {
 			/*想法：洗牌的方式就是從特定數量的牌中隨機抽走一張，放到另一堆，
 			持續此動作直到剩下最後一張(那就不用選了，直接把最後一張放到另一堆即可)*/
@@ -73,26 +68,27 @@ public class poker_Cards {
 				tmpCards.add(cards.get(i));
 			}
 			
-			//52張牌
-			if(cardsNum == 52) {
-				//index範圍0~51
-				for(int x = 51; x >= 0; x--) {
-					//牌堆只剩一張時
-					if(x == 0) {
-						//把舊牌堆的最後一張加入新牌堆
-						newCards.add(tmpCards.get(0));
-						tmpCards.remove(0);
-					}
-					//牌堆還有其他牌時
-					else {
-						//決定從舊牌堆要抽走哪一張
-						tmpNum = (int)(Math.random()*x)+1;
-						//把舊牌堆的那一張加入新牌堆
-						newCards.add(tmpCards.get(tmpNum));
-						tmpCards.remove(tmpNum);
-					}
+			//執行洗牌
+			//index範圍0~(cardsNum-1)
+			for(int x = (cardsNum - 1); x >= 0; x--) {
+				//牌堆只剩一張時
+				if(x == 0) {
+					//把舊牌堆的最後一張加入新牌堆
+					newCards.add(tmpCards.get(0));
+					tmpCards.remove(0);
 				}
-				
+				//牌堆還有其他牌時
+				else {
+					//決定從舊牌堆要抽走哪一張
+					tmpNum = (int)(Math.random()*x)+1;
+					//把舊牌堆的那一張加入新牌堆
+					newCards.add(tmpCards.get(tmpNum));
+					tmpCards.remove(tmpNum);
+				}
+			}
+			
+			//52張牌
+			if(cardsNum == 52) {		
 				//印出新牌堆內容
 				for(int l = 0; l < 52; l++) {
 					if(l%4 == 0 && l > 0) {
@@ -103,24 +99,6 @@ public class poker_Cards {
 			}
 			//54張牌
 			if(cardsNum == 54) {
-				//index範圍0~53
-				for(int x = 53; x >= 0; x--) {
-					//牌堆只剩一張時
-					if(x == 0) {
-						//把舊牌堆的最後一張加入新牌堆
-						newCards.add(tmpCards.get(0));
-						tmpCards.remove(0);
-					}
-					//牌堆還有其他牌時
-					else {
-						//決定從舊牌堆要抽走哪一張
-						tmpNum = (int)(Math.random()*x)+1;
-						//把舊牌堆的那一張加入新牌堆
-						newCards.add(tmpCards.get(tmpNum));
-						tmpCards.remove(tmpNum);
-					}
-				}
-				
 				//印出新牌堆內容
 				for(int l = 0; l < 54; l++) {
 					if(l%6 == 0 && l > 0) {
@@ -134,19 +112,13 @@ public class poker_Cards {
 				System.out.print("\n\n請選擇是否再重新洗牌一次？ 輸入 0 代表『否』、1 代表『是』(預設為『否』)\n");
 				optText2 = numScanner.nextLine();
 				
-				//處理預設
-	            if(optText2.equals("") == true) {
+				//處理預設或手動輸入0
+	            if(optText2.equals("") == true || optText2.equals("0") == true) {
 	            	keepRun = false;
 	            	System.out.print("程式已停止...\n");
 	            	break;
 	            }
 	            else {
-	            	//處理手動輸入0
-	            	if(optText2.equals("0") == true) {
-	            		keepRun = false;
-	                	System.out.print("程式已停止...\n");
-	                	break;
-	                }
 	            	//處理手動輸入1
 	            	if(optText2.equals("1") == true) {
 	            		keepRun = true;
