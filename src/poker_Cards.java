@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.lang.Math;
 
-public class poker_Cards {
+public class Poker_Cards {
 	public static void main(String[] args) {
         //tmpNum用做暫存隨機抽牌抽到幾的數字、cardsNum代表牌的總數
 		int tmpNum, cardsNum;
